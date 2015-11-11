@@ -10,6 +10,6 @@ public interface Robot
 	Direction getDirection();
 	Position getPosition();
 	
-    void setDirection(Direction dir);
-	void setPosition(Position pos);
+    Robot setDirection(Direction dir);
+	Robot setPosition(Position pos);
 }

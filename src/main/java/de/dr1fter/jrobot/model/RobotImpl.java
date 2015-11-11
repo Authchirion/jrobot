@@ -21,14 +21,16 @@ public class RobotImpl implements Robot {
 	}
 
 	@Override
-	public void setDirection(Direction dir) {
+	public Robot setDirection(Direction dir) {
 		this.dir = dir;
+		return this;
 		
 	}
 
 	@Override
-	public void setPosition(Position pos) {
+	public Robot setPosition(Position pos) {
 		this.pos = pos;
+		return this;
 	}
 	
 

@@ -2,7 +2,7 @@ package de.dr1fter.jrobot.model;
 
 public class PositionImpl implements Position {
 
-	private int x, y;
+	private final int x, y;
 
 	public PositionImpl(int x, int y) {
 		this.x = x;
@@ -10,12 +10,12 @@ public class PositionImpl implements Position {
 	}
 
 	@Override
-	public int getX() {
+	public final int getX() {
 		return x;
 	}
 
 	@Override
-	public int getY() {
+	public final int getY() {
 		return y;
 	}
 
