@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<!-- this artifact's coordinates (GAVCE) -->
 	<groupId>de.dr1fter</groupId>
 	<artifactId>de.dr1fter.jrobot</artifactId>
 	<version>0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	
+
 	<name>jRobot - fun with robots and such</name>
 	<description>
 		todo
@@ -37,6 +37,24 @@
 		</developer>
 	</developers>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<lwjgl.version>3.0.0b-SNAPSHOT</lwjgl.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>snapshots-repo</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -64,40 +82,23 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-    		<groupId>org.lwjgl</groupId>
-    		<artifactId>lwjgl</artifactId>
-    		<version>${lwjgl.version}</version>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl</artifactId>
+			<version>${lwjgl.version}</version>
 		</dependency>
 		<dependency>
-    		<groupId>org.lwjgl</groupId>
-    		<artifactId>lwjgl-platform</artifactId>
-    		<version>${lwjgl.version}</version>
-    		<classifier>natives-windows</classifier>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-platform</artifactId>
+			<version>${lwjgl.version}</version>
+			<classifier>natives-windows</classifier>
 		</dependency>
 		<dependency>
-    		<groupId>org.lwjgl</groupId>
-    		<artifactId>lwjgl-platform</artifactId>
-    		<version>${lwjgl.version}</version>
-    		<classifier>natives-linux</classifier>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-platform</artifactId>
+			<version>${lwjgl.version}</version>
+			<classifier>natives-linux</classifier>
 		</dependency>
 	</dependencies>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    	<lwjgl.version>3.0.0b-SNAPSHOT</lwjgl.version>
-	</properties>
-	
-	<repositories>
-    <repository>
-        <id>snapshots-repo</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        <releases>
-            <enabled>false</enabled>
-        </releases>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-    </repository>
-	</repositories>
 
 	<build>
 		<plugins>
@@ -142,8 +143,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.4.1</version>
-				<configuration> <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments> 
-					</configuration>
+				<configuration>
+					<arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -160,17 +162,17 @@
 				</executions>
 			</plugin>
 			<plugin>
-        		<groupId>com.googlecode.mavennatives</groupId>
-        		<artifactId>maven-nativedependencies-plugin</artifactId>
-        		<version>0.0.7</version>
-        		<executions>
-               		 <execution>
-                        <id>unpacknatives</id>
-                        <goals>
-                                <goal>copy</goal>
-                        </goals>
-               		 </execution>
-       		 </executions>
+				<groupId>com.googlecode.mavennatives</groupId>
+				<artifactId>maven-nativedependencies-plugin</artifactId>
+				<version>0.0.7</version>
+				<executions>
+					<execution>
+						<id>unpacknatives</id>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -182,6 +184,6 @@
 			<id>sonatype-release</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
-	<!-- to stage / release, log on to https://oss.sonatype.org/index.html#stagingRepositories -->
+		<!-- to stage / release, log on to https://oss.sonatype.org/index.html#stagingRepositories -->
 	</distributionManagement>
 </project>
