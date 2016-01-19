@@ -1,54 +1,48 @@
 package de.dr1fter.jrobot;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
-public class JRobot extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+import de.dr1fter.jrobot.gui.MainMenu;
 
-	TextButton button;
-	Stage stage;
-	TextButton.TextButtonStyle style;
-	BitmapFont font;
-    int count;
+public class JRobot extends Game {
+
+    public Batch batch;
+    private FreeTypeFontGenerator.FreeTypeFontParameter parameter;
+    private FreeTypeFontGenerator generator;
+    public BitmapFont font;
 
 	
 	@Override
 	public void create () {
+        Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
+        Gdx.graphics.setVSync(true);
         batch = new SpriteBatch();
-		style = new TextButton.TextButtonStyle();
-		font = new BitmapFont();
-        style.font = font;
-		button = new TextButton("This is a button", style);
-        count = 0;
-        button.setPosition(Gdx.graphics.getWidth() / 2 - button.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-
-        button.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                count++;
-                button.setText("Button clicked: " + count + " times");
-            }
-        });
-
-		stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
-		stage.addActor(button);
+        loadFont();
+        setScreen(new MainMenu(this));
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(20, 40, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		stage.draw();
+        super.render();
+
 	}
+
+    private void loadFont() {
+        generator = new FreeTypeFontGenerator(Gdx.files.internal("FFF_Tusj.ttf"));
+        parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 64;
+        parameter.color = Color.BLUE;
+        font = generator.generateFont(parameter);
+    }
+
+    public void dispose() {
+        generator.dispose();
+        batch.dispose();
+    }
 }

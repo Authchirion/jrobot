@@ -1,0 +1,19 @@
+menuButton.png
+size: 2038, 499
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+menuButtonPushed
+  rotate: false
+  xy: 1, 1
+  size: 1017, 497
+  orig: 1024, 512
+  offset: 2, 13
+  index: -1
+menuButtonUnPushed
+  rotate: false
+  xy: 1020, 1
+  size: 1017, 497
+  orig: 1024, 512
+  offset: 2, 13
+  index: -1
